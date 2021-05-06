@@ -17,6 +17,9 @@ from tabulate import tabulate
 
 system('clear')
 
+
+
+
 class Main:
 
     def __init__(self):
@@ -89,10 +92,10 @@ class Main:
 
 if __name__ == '__main__':
     main = Main()
-    datagen = Dataset.load_data(path="../Runner/")
-    res = main.run(datagen,workers=8)
-    # print(res)
-    main.train(res)
-    # print(res)
+    datagen = Dataset.create_json(root="../Runner/")
+    # res = main.run(datagen,workers=8)
+    # # print(res)
+    # main.train(res)
+    # # print(res)
     
 

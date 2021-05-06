@@ -1,7 +1,7 @@
 
 from facenet_pytorch import MTCNN
 from app.utils.message import message
-from area import area
+
 
 class FaceLocalizer:
 
