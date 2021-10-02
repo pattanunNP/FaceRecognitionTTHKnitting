@@ -34,6 +34,26 @@ Redis is key&value based in-memmory database which used in queue system of this 
         k-match:2,
         faces:{
             0:{
+               face-location:{
+                    x:122,
+                    y:22,
+                    w:24,
+                    h:22
+                }
+                match:{
+                    0:{
+                        name:"arm",
+                        prob:"0.23",
+                        path:"runner/r01-arm"
+                    },
+                    1:{
+                        name:"pop",
+                        prob:"0.33",
+                        path:"runner/r02-pop"
+                    }
+                }
+            },
+            1:{ 
                 face-location:{
                     x:122,
                     y:22,
@@ -53,25 +73,8 @@ Redis is key&value based in-memmory database which used in queue system of this 
                     }
                 }
             },
-            1:{ face-location:{
-                    x:122,
-                    y:22,
-                    w:24,
-                    h:22
-                }
-                match:{
-                    0:{
-                        name:"arm",
-                        prob:"0.23",
-                        path:"runner/r01-arm"
-                    },
-                    1:{
-                        name:"pop",
-                        prob:"0.33",
-                        path:"runner/r02-pop"
-                    }
-                }},
-            2:{ face-location:{
+            2:{ 
+                face-location:{
                     x:192,
                     y:22,
                     w:27,
@@ -88,8 +91,10 @@ Redis is key&value based in-memmory database which used in queue system of this 
                         prob:"0.33",
                         path:"runner/r02-pop"
                     }
-                }},
-            3:{ face-location:{
+                }
+            },
+            3:{ 
+                face-location:{
                     x:122,
                     y:22,
                     w:24,
@@ -106,7 +111,8 @@ Redis is key&value based in-memmory database which used in queue system of this 
                         prob:"0.33",
                         path:"runner/r02-pop"
                     }
-                }},
+                }
+            },
             4:{ face-location:{
                     x:122,
                     y:22,
