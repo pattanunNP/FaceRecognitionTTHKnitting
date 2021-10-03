@@ -13,17 +13,22 @@ matplotlib-inline==0.1.2
 mkl-fft==1.3.0
 mkl-random==1.1.1
 mkl-service==2.3.0
-numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1603570489231/work
+numpy 
+eventlet
 parso==0.8.2
 pexpect==4.8.0
 pickleshare==0.7.5
+celery
+flower
 Pillow==8.2.0
 prompt-toolkit==3.0.18
 psutil==5.8.0
 ptyprocess==0.7.0
 Pygments==2.8.1
 requests==2.25.1
-six @ file:///tmp/build/80754af9/six_1605205327372/work
+six
+redis
+tqdm
 sty==1.0.0rc1
 tabulate==0.8.9
 torch==1.8.1

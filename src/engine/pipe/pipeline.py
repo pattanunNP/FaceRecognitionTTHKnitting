@@ -1,111 +1,41 @@
-from collections import defaultdict
-from itertools import islice
-from joblib import Parallel
-from tabulate import tabulate
-from optparse import OptionParser
-import inspect
-from app.utils.message import message
+from logging import log
+from engine.service.Prepare import FaceDetection
+import os
+import cv2
+from engine.utils.log import Logger
+from engine.utils.is_image_file import is_image_file
+from tqdm.auto import tqdm
+
+logger = Logger(name="Pipeline", level="info",
+                log_file="run.log", save_to_file=True)
+
 
 class Pipeline:
 
-    def __init__(self, steps, memory=None,  verbose=1):
+    def __init__(self) -> None:
 
-        print("\nInitialize pipeline ... \n ")
+        logger.info("Initializing Pipeline")
+        logger.info("Initializing Pipeline OK")
 
-        """
-        
-        Parameters
-        ----------
-        steps : dict
+    def PrepareImage(self, dir):
+        total_image = 0
+        images_list = []
+        logger.info(f"[Checking] Data Directory at {dir}")
 
-            List of {name, transformFunction} dicts (implementing fit) that are
-            chained, in the order in which they are chained, with the last object
-            an estimator.
+        if os.path.isdir(dir):
+            logger.info(f"[Checking] Data Directory at {dir} OK")
+            logger.info(f"Found {len(os.listdir(dir))} folders")
 
+            for path, _, files in os.walk(dir):
+                for file in filter(is_image_file, files):
+                    image_path = os.path.join(path, file)
+                    total_image += 1
+                    images_list.append(image_path)
 
-        verbose : int, defualt = 1
+            logger.info(f"Found total {total_image} images")
+            for image in tqdm(images_list):
+                logger.info(f"Processing: {image}")
 
-            logging level `-1, 0, 1`
-
-           -1 : Not print any logging 
-            0 : Print imaportant logging
-            1 : Print All loggin everything
-
-
-        Attributes
-        ----------
-        named_steps : :class:`~sklearn.utils.Bunch`
-            Dictionary-like object, with the following attributes.
-            Read-only attribute to access any step parameter by user given name.
-            Keys are step names and values are steps parameters.
-
-        
-        Examples
-        --------
-        >>> from app.service.model.FaceExtactor import FaceExtactor
-
-        >>> from app.service.model.FaceLocalizer import FaceLocalizer
-
-        >>> from app.data.Dataset import Dataset
-
-        >>> from app.pipeline.pipeline import Pipeline
-
-
-        >>> FaceExtactor = FaceExtactor()
-
-        >>> FaceLocalizer = FaceLocalizer()   
-
-        >>> pipe = Pipeline([
-                            {'LocalizeFace', FaceLocalizer.LocalizerFace()},
-                            {'FaceExtactor', FaceExtactor.exactFeature()}])
-
-        >>> # The pipeline can be used as any other estimator
-        >>> # and avoids leaking the test set into the train set
-
-        >>> pipe.fit(X_train)
-        Pipeline([
-                            {'LocalizeFace', FaceLocalizer.LocalizerFace()},
-                            {'FaceExtactor', FaceExtactor.exactFeature()}])
-
-        >>> pipe.result()
-        
-        """
-        
-        self.steps = steps
-
-        self.verbose  = verbose
-
-        self.table = []
-
-        for idx, item in enumerate(self.steps):
-            
-            self.table.append(["Step: {} {} ".format(idx+1, item)])
-
-        print(tabulate(self.table))
-
-
-    def _log_message(self, step_name):
-        return f"{step_name}"
-        
-
-
-    def fit(self, data):
-        result = {}
-        assert type(data) == tuple
-        for trans in self.steps:   
-            method_list = inspect.getmembers(self.steps[trans], predicate=inspect.ismethod)
-            for name in method_list:
-                if name[0] != "__init__":
-                    val = name[1](data[0])
-                    result[name[0]] = val
-                    
-        return result
-
-        
-
-
-
-        
-
-
-        
+        else:
+            logger.warn(
+                f"[Checking] Data Directory at {dir} Not exits")
