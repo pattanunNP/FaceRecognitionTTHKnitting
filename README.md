@@ -2,16 +2,24 @@
 
 [![Python 3.8.x](https://img.shields.io/badge/python-3.8-green.svg)](https://www.python.org/downloads/release/python-360/)
 
-# Table of Content
+## Table of Content
 
 * [Table of contents](#table-of-contents)
 
 * [Quick start](#quick-start)
 
-* [RabbitMQ](#rabbit-mq)
+* [Distributed Task Queue](#distributed-task-queue)
+
+* [About RabbitMQ](#about-rabbitmq)
 
 * [About Redis](#about-redis)
 
+
+## Distributed Task Queue
+Distributed Task Queue used for 
+## About RabbitMQ
+
+RabbitMQ is Advanced Message Queue Protocol (AMQP) which used for Ditributed Task Queue System
 
 ## About Redis
 

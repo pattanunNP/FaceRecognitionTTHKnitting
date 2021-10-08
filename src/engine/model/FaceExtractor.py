@@ -1,5 +1,8 @@
 
+from json import encoder
+from typing import Any
 from facenet_pytorch import InceptionResnetV1, MTCNN
+from engine.utils.facealign import FaceAlign
 
 
 class FaceExtractor:
@@ -14,9 +17,10 @@ class FaceExtractor:
         except Exception as err:
             print(err)
 
-    def extractFeature(self, x):
-        try:
-            img_cropped = self.mtcnn(x)
-            return self.resnet(img_cropped.unsqueeze(0)).cpu().detach().numpy()
-        except:
-            pass
+    def extractFeature(self, image_path, face_id, face_cord):
+
+        aligned = FaceAlign.align_face(image_path, face_cord)
+        face_tensor = self.mtcnn(aligned)
+        encoded_face = self.resnet(
+            face_tensor.unsqueeze(0)).cpu().detach().numpy()
+        print(encoded_face)

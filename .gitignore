@@ -8,3 +8,11 @@ bin/
 ./__pycache__
 
 *.cpython-38.pvc
+
+*.env
+*.log
+*.index
+*.ann
+*.png
+*.jpg
+*.txt
