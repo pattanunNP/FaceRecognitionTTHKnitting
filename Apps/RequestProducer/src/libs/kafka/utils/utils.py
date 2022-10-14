@@ -1,11 +1,11 @@
-from logguru import logger
+from loguru import logger
 import cv2
 
 
 def delivery_report(err, msg):
     if err:
-        logger.error("Failed to deliver message: {0}: {1}"
-              .format(msg.value(), err.str()))
+        logger.error("Failed to deliver message: {0}"
+              .format(err.str()))
     else:
         logger.info(f"msg produced. \n"
                     f"Topic: {msg.topic()} \n" +
@@ -14,6 +14,5 @@ def delivery_report(err, msg):
                     f"Timestamp: {msg.timestamp()} \n")
                     
 def serializeImg(img):
-    _, img_buffer_arr = cv2.imencode(".jpg", img)
-    img_bytes = img_buffer_arr.tobytes()
-    return img_bytes
+   
+    return cv2.imencode(".jpg", img)[1].tobytes()

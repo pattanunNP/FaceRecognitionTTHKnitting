@@ -8,6 +8,7 @@ bin/
 ./__pycache__
 
 *.cpython-38.pvc
+*.cpython-310.pvc
 
 *.env
 *.log
@@ -16,3 +17,8 @@ bin/
 *.png
 *.jpg
 *.txt
+
+
+volumes/
+
+.idea/
