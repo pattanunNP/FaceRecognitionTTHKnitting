@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "Apps/ImageIndexing"
+		},
+		{
+			"path": "Apps/ImageSearch"
+		},
+		{
+			"path": "Apps/ImageUpload"
+		}
+	]
+}

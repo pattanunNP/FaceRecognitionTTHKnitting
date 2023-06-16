@@ -19,7 +19,7 @@ class Producer:
         path = Path(path).absolute()
 
         files = (p.resolve() for p in Path(path).glob("**/*")
-                 if p.suffix in {".jpg", ".jpeg", ".png"})
+              n   if p.suffix in {".jpg", ".jpeg", ".png"})
 
         for image_path in tqdm(files):
             logger.info(f"Sending image: {image_path.as_posix()}")

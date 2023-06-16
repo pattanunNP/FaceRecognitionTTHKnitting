@@ -5,13 +5,18 @@ from loguru import logger
 
 
 class KafkaProducer:
-    conf = {
-        'bootstrap.servers': "localhost:9092,localhost:9092",
-        'client.id': socket.gethostname()
-    }
+  
+    KAFKA_PRODUCER_CONFIGURATION = {
+    'bootstrap.servers': 'localhost:9092',
+    'security.protocol' : 'SASL_PLAINTEXT',
+    'sasl.username': 'admin',
+    'sasl.password': 'admin-secret',
+    'sasl.mechanism':'PLAIN'}
+
+
 
     def __init__(self, topic_name: str):
-        self.producer = confluent_kafka.Producer(KafkaProducer.conf)
+        self.producer = confluent_kafka.Producer(KafkaProducer.KAFKA_PRODUCER_CONFIGURATION)
 
         self.topic_name = topic_name
 

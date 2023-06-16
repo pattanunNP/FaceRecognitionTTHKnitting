@@ -5,12 +5,19 @@ from .config import KafkaConfig
 
 
 class KafkaConsumer:
-
     def __init__(self, topic_name: str, config: KafkaConfig):
         conf = {
-            'bootstrap.servers': f"{config.KAFKA_SERVER}:{config.KAFKA_PORT}",
-            'group.id': f"{config.KAFKA_CONSUMER_GROUP}",
-            'auto.offset.reset': 'earliest'
+            'bootstrap.servers': config.KAFKA_BROKER_URL,
+            'group.id': 'testgroup',
+            'security.protocol': 'SASL_PLAINTEXT',
+            'sasl.username': 'admin',
+            'sasl.password': 'admin-secret',
+            'sasl.mechanism': 'PLAIN',
+            'default.topic.config': {
+                'auto.offset.reset': 'smallest'
+            },
+            'session.timeout.ms': config.KAFKA_CONSUMER_SESSION_TIMEOUT,
+            'queued.max.messages.kbytes': config.KAFKA_QUEUED_MAX_MESSAGE_K
         }
         self.consumer = Consumer(conf)
 

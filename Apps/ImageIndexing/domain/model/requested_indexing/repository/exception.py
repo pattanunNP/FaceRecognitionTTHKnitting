@@ -1,14 +1,22 @@
-class InvalidOrderIdException(Exception):
+class InvalidTaskIdException(Exception):
     pass
 
 
-class OrderNotFoundException(Exception):
+class TaskNotFoundException(Exception):
     pass
 
 
-class OrderSubmittedException(Exception):
+class TaskSubmittedException(Exception):
     pass
 
 
-class InvalidOrderItemAmountException(Exception):
+class InvalidTaskPayloadException(Exception):
+    pass
+
+
+class DuplicateKeyError(Exception):
+    pass
+
+
+class EntityOutdated(Exception):
     pass
