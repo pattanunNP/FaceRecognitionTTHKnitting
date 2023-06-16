@@ -1,1 +1,27 @@
 # created by virtualenv automatically
+
+Runner/
+bin/
+lib/
+out/
+pyvenv.cfg/
+__pycache__/
+
+*.cpython-38.pvc
+*.cpython-310.pvc
+
+*.env
+*.log
+*.index
+*.ann
+*.png
+*.jpg. 
+*.txt
+
+
+volumes/
+
+.idea/
+.ipynb_checkpoints/
+
+kafka_2.13-3.3.1/
